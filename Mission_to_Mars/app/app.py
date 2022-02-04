@@ -5,7 +5,7 @@ from scrape_mars import scrape_all
 app = Flask(__name__)
 
 # Use flask_pymongo to set up mongo connection
-mongo = PyMongo(app, uri="mongodb://localhost:27017/mars_app")
+mongo= PyMongo(app, uri="mongodb://localhost:27017/mars_app")
 
 #Route to render index.html template using data from Mongo
 @app.route("/")
@@ -22,4 +22,4 @@ def scrape():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

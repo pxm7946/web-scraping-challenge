@@ -38,26 +38,32 @@ def scrape_all():
     h3=soup.find_all('h3')
     four_h3= [tag.text for tag in h3][:-1]
 
+
     hemisphere_image_urls = []
-    links = browser.find_by_css('a.product-item img')
-    for i in range(len(links)):
-        hemisphere = {}
+    browser.visit(url)
+    for hemi in range(len(four_h3)):
+        hemi_dict = {}
+        browser.click_link_by_partial_text(four_h3[hemi])
     
-        browser.find_by_css('a.product-item img')[i].click()
-        sample_elem = browser.links.find_by_text('Sample').first
-        hemisphere['img_url'] = sample_elem['href']
-        hemisphere['title'] = browser.find_by_css('h2.title').text
-        hemisphere_image_urls.append(hemisphere)
-        browser.back()
+        soup= bs(browser.html, 'html.parser')
 
-    data = {
-        "title":title,
-        "paragraph":para,
-        "featured_img":featured_img_url,
-        "mars_facts":td,
-        "hemisphere":hemisphere_image_urls
-    }
+        trunc = soup.find('img', class_="wide-image")['src']
+        hemi_dict["title"]=four_h3[hemi]
+        hemi_dict["img_url"]=f"{url}{trunc}"
 
-    browser.quit()
+        hemisphere_image_urls.append(hemi_dict)
+    
+        # Finally, we navigate backwards
+        browser.back()  
 
-    return data
+        data = {
+            "title":title,
+            "paragraph":para,
+            "featured_img":featured_img_url,
+            "mars_facts":td,
+            "hemispheres":hemisphere_image_urls
+        }
+
+        browser.quit()
+    
+        return data

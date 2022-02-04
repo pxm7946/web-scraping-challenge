@@ -60,12 +60,12 @@
           <h2 class="text-center">Mars Hemispheres</h2>
         </div>
 
-        {% for hemi in mars_data.hemisphere %}
+        {% for hemi in mars_data.hemispheres %}
         <div class="col-md-3">
           <div class="thumbnail">
-            <img src="{{mars_data.hemisphere | default('static/images/error.png', true)}}" alt="...">
+            <img src="{{ hemi.img_url }}" alt="Mars">
             <div class="caption">
-              <h3>{{mars_data.title}}</h3>
+              <h4>{{mars_data.title}}</h4>
             </div>
           </div>
         </div>
