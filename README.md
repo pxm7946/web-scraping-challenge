@@ -1,1 +1,14 @@
 # web-scraping-challenge
+
+Splinter, Pandas, and BeautifulSoup were the primary libraries that were utilized for this specific homework assignment. Web scraping required these 3 main libraries, and other functions to get the information that was intended to be displayed. Scraping was used to show the main parts of the following websites: redplanetscience.com, spaceimages-mars.com, galaxyfacts-mars.com, and marshemispheres.com . To be specific, the title of the latest news article, the summary of that article (shown as paragraph), a facts table, featured image, and images of the Mars hemispheres are portrayed in the web application. 
+
+For each of them, the url had to be typed out in order for the system to recognize the location of the information that is going to be retrieved. Next, the function "browser.visit(url)" actually causes the system to go to that website. Lastly, "soup=bs(browser.html, 'html.parser')" analyzes the string of symbols. These 3 steps are required for the system to visit the website and begin retrieving the data. The text or "class" where each of the elements are located in had to be called so that the information that we were looking for could be successfully transmitted to the web application. For example, the part of the homework assignment that required the title and paragraph to be portrtayed can be found in the class "div", and later filtered down to the sections "content_title" and "article_teaser_body", respectfully. On the other hand, the images for the hemisphere section can be found as the class "img", and later filtered as "h3", which is what is shown under line 38 of the scrape_mars.py file. A loop was created in order to retrieve those four images, and the data was later renamed for the app.py file.
+ 
+A collection called "mars_data" was created where the 5 required elements were placed. Each element was identified by calling the collection, then the actual element in the HTMl file. Once everything was correctly identified in the HTML file, flask had to imported in the app.py file in order for the web application to be ran. The index.html file was included in the route in order for the flask to know exactly HOW to display the information. The scraping was done from the scrape_mars.py file, and displayed from the coding that was done in the index.html file. Below are screenshots of how the web application looks:
+
+![Screen Shot 2022-02-04 at 4 09 35 PM](https://user-images.githubusercontent.com/72631173/152614347-3efd0610-f9f1-4ee5-9880-ec28db1ec0c3.png)
+![Screen Shot 2022-02-04 at 4 09 44 PM](https://user-images.githubusercontent.com/72631173/152614367-62a9b513-3f53-4853-b151-4c2ef20750bf.png)
+![Screen Shot 2022-02-04 at 5 04 10 PM](https://user-images.githubusercontent.com/72631173/152614726-b3ebd14e-d59b-4809-8058-a15145c2b2ce.png)
+![Screen Shot 2022-02-04 at 4 10 03 PM](https://user-images.githubusercontent.com/72631173/152614245-2ee7989d-b835-49e6-969f-fe05e8330ca9.png)
+
+
